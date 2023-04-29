@@ -12,15 +12,16 @@ async function run() {
 
     try {
         const basePath = core.getInput('base-path');
-        const langFilesPath = core.getInput('lang-files-path');
-        const editablePath = core.getInput('editable-files-path');
+        const langFilesPath = path.join(basePath, core.getInput('lang-files-path'));
+        const editablePath = path.join(basePath, core.getInput('editable-files-path'));
         const fileSuffix = core.getInput('end-with');
         const editableSuffix = core.getInput('editable-suffix');
         const backupSuffix = core.getInput('backup-suffix');
         const defaultName = core.getInput('default-language');
 
-        const updatePathFiles = (fileNames, isEditablePath) => {
-            for (const pathName of fileNames) {
+        const updatePathFiles = (targetPath) => {
+            const isEditablePath = targetPath == editablePath;
+            for (const pathName of fs.readdirSync(targetPath)) {
                 if (!pathName.endsWith(fileSuffix)) return;
                 
                 let finalizeName = pathName.substring(0, pathName.length - fileSuffix.length);
@@ -59,8 +60,8 @@ async function run() {
         }
     
         core.info('loading lang files...');
-        updatePathFiles(fs.readdirSync(path.join(basePath, langFilesPath)), false);
-        updatePathFiles(fs.readdirSync(path.join(basePath, editablePath)), true);
+        updatePathFiles(langFilesPath);
+        updatePathFiles(editablePath);
         core.info(`loaded ${pathFiles.length} lang files.`);
 
         if (!defaultData) {
@@ -116,13 +117,13 @@ async function run() {
                 resultData[key] = value;
             }
             
-            fs.writeFileSync(path.join(basePath, langFilesPath, langName + fileSuffix), JSON.stringify(resultData, null, 4), 'utf8');
-            fs.writeFileSync(path.join(basePath, editablePath, langName + editableSuffix + fileSuffix), JSON.stringify(languageData[langName], null, 4), 'utf8');
+            fs.writeFileSync(path.join(langFilesPath, langName + fileSuffix), JSON.stringify(resultData, null, 4), 'utf8');
+            fs.writeFileSync(path.join(editablePath, langName + editableSuffix + fileSuffix), JSON.stringify(languageData[langName], null, 4), 'utf8');
             core.info(`done with update '${langName}'.`);
         }
 
         core.info(`backup old default strings...`);
-        fs.writeFileSync(path.join(basePath, langFilesPath, defaultName + backupSuffix + fileSuffix), JSON.stringify(defaultData, null, 4), 'utf8');
+        fs.writeFileSync(path.join(langFilesPath, defaultName + backupSuffix + fileSuffix), JSON.stringify(defaultData, null, 4), 'utf8');
         core.info(`done with backup default strings.`);
 
         core.info(`complete!`);
