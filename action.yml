@@ -6,11 +6,11 @@ inputs:
     description: 'language files base path'
     required: true
   lang-files-path: 
-    description: 'language files import/export path'
+    description: 'The directory where language files expect editable language files are created/loaded. Based on `base-path`.'
     required: false
     default: './'
   editable-files-path: 
-    description: 'editable language files path'
+    description: 'The directory where editable language files are created/loaded. Based on `base-path`.'
     required: false
     default: './editable'
   end-with: 

@@ -23,6 +23,14 @@ It doesn't checkout or push commits, so it does only proceeds to edit files in w
     # Required
     base-path: '/src/main/resources/assets/examplemod/lang'
 
+    # The directory where language files expect editable language files are created/loaded. Based on `base-path`.
+    # Not Required, Default: `lang-files-path: './'`
+    lang-files-path: './'
+
+    # The directory where editable language files are created/loaded. Based on `base-path`.
+    # Not Required, Default: `editable-files-path: './'`
+    editable-files-path: './editable' 
+
     # A filename suffix string to identify a language files in the `base-path` directory.
     # Not Required, Default: `end-with: '.json'`
     end-with: '.json'
@@ -53,6 +61,7 @@ on:
 jobs:
   run_schedule:
     runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'RedLime' }}
     steps:
       - uses: actions/checkout@v3
       - name: work
@@ -60,6 +69,7 @@ jobs:
         with: 
           base-path: '/src/main/resources/assets/examplemod/lang'
           editable-suffix: '.TRANSLATE_ME'
+          editable-files-path: './editable'
       - name: Commit update lang files
         uses: endbug/add-and-commit@v9
         with:
