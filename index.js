@@ -62,7 +62,7 @@ async function run() {
         core.info('loading lang files...');
         updatePathFiles(langFilesPath);
         updatePathFiles(editablePath);
-        core.info(`loaded ${pathFiles.length} lang files.`);
+        core.info(`loaded lang files.`);
 
         if (!defaultData) {
             core.setFailed('Failed to load default lang file.');
