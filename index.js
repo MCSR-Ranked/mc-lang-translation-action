@@ -7,6 +7,7 @@ async function run() {
     let defaultData = null;
     let backupData = {};
     const languageData = {};
+    const oldLangData = {};
     const editableExist = {};
 
     try {
@@ -49,6 +50,8 @@ async function run() {
                 if (isEditable) {
                     languageData[finalizeName] = langData;
                     editableExist[finalizeName] = true;
+                } else {
+                    oldLangData[finalizeName] = langData;
                 }
             }
         }
@@ -61,14 +64,29 @@ async function run() {
         core.info('done with reading lang files, try updating...');
 
         for (const [langName, exist] of Object.entries(editableExist)) {
-            if (!exist) {
-                languageData[langName] = JSON.parse(JSON.stringify(defaultData));
-                core.info(`'${langName}' editable file wasn't exist, it will create new editable file.`);
+            if (!oldLangData[langName]) {
+                core.setFailed(`The language file for '${langName}' could not be found.`);
+                return;
             }
+
+            const resultData = {};
 
             core.info(`start updating '${langName}'...`);
 
-            const resultData = {};
+            if (!exist) {
+                languageData[langName] = JSON.parse(JSON.stringify(defaultData));
+                core.info(`'${langName}' editable file wasn't exist, it will create new editable file.`);
+
+                // init old strings
+                for (const [key, value] of Object.entries(oldLangData[langName])) {
+                    const defaultValue = defaultData[key];
+                    if (defaultValue) {
+                        languageData[langName][key] = value;
+                    }
+                }
+            }
+
+            // update strings
             for (const [key, value] of Object.entries(languageData[langName])) {
                 const defaultValue = defaultData[key];
                 const oldValue = backupData[key];
