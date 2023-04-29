@@ -18,6 +18,8 @@ jobs:
         id: test
         with: 
           base-path: './test'
+          lang-files-path: 'resources'
+          lang-files-path: './'
       - name: Commit update lang files
         uses: endbug/add-and-commit@v9
         with:
