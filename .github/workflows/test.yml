@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: Test
-    if: {{ github.repository_owner == 'RedLime' }}
+    if: ${{ github.repository_owner == 'RedLime' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
