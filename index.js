@@ -37,7 +37,7 @@ async function run() {
                 core.info(`found '${pathName}'. (editable: ${isEditable}, default: ${isDefault}, backup: ${isBackup})`);
     
                 core.info(`reading '${pathName}'...`);
-                const langData = JSON.parse(fs.readFileSync(path.join(basePath, pathName), 'utf8'));
+                const langData = JSON.parse(fs.readFileSync(path.join(targetPath, pathName), 'utf8'));
                 core.info(`read '${pathName}' json. lang keys: ${Object.keys(langData).length}`);
     
                 if (isDefault && !isEditablePath) {
