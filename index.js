@@ -128,7 +128,7 @@ async function run() {
 
         core.info(`complete!`);
     } catch (error) {
-        core.setFailed(error.message);
+        core.setFailed(error);
     }
 
 
