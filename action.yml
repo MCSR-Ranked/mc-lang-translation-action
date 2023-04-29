@@ -3,22 +3,30 @@ author: 'RedLime'
 description: 'Update lang files automatically for minecraft lang files'
 inputs:
   base-path: 
-    description: 'lang file paths'
+    description: 'language files base path'
     required: true
+  lang-files-path: 
+    description: 'language files import/export path'
+    required: false
+    default: './'
+  editable-files-path: 
+    description: 'editable language files path'
+    required: false
+    default: './editable'
   end-with: 
-    description: 'lang file end with, like .json'
+    description: 'A filename suffix string to identify a language files in the `base-path` directory.'
     required: false
     default: '.json'
   editable-suffix: 
-    description: 'lang file suffix for editable files'
+    description: 'To be inserted before value of `end-with` in the filename to identify the editable language file.'
     required: false
     default: '.editable'
   backup-suffix: 
-    description: 'backup default language file suffix'
+    description: 'To be inserted before value of `end-with` in the filename to identify the backup language file.'
     required: false
     default: '.prev'
   default-language:
-    description: 'default language'
+    description: 'A filename without `end-with` or `*-suffix` to identify the base language file.'
     required: false
     default: 'en_us'
 runs:
