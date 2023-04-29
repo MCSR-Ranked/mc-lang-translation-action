@@ -30,8 +30,8 @@ async function run() {
             const fileNames = fs.readdirSync(targetPath);
 
             core.info(`getting files from ${targetPath}, files: ${fileNames}`);
-            for (const pathName of fs.readdirSync(targetPath)) {
-                if (!pathName.endsWith(fileSuffix)) return;
+            for (const pathName of fileNames) {
+                if (!pathName.endsWith(fileSuffix)) continue;
                 
                 let finalizeName = pathName.substring(0, pathName.length - fileSuffix.length);
                 
