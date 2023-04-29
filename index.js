@@ -19,6 +19,9 @@ async function run() {
         const backupSuffix = core.getInput('backup-suffix');
         const defaultName = core.getInput('default-language');
 
+        core.info(`found lang-file-path: ${langFilesPath}`);
+        core.info(`found editable-file-path: ${langFilesPath}`);
+
         if (!fs.existsSync(langFilesPath)) fs.mkdirSync(langFilesPath, { recursive: true });
         if (!fs.existsSync(editablePath)) fs.mkdirSync(editablePath, { recursive: true });
 
