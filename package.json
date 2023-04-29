@@ -1,6 +1,6 @@
 {
   "name": "mc-lang-translation-action",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Minecraft lang file translation workflow",
   "main": "index.js",
   "author": "RedLime",
