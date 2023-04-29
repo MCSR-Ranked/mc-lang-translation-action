@@ -27,6 +27,9 @@ async function run() {
 
         const updatePathFiles = (targetPath) => {
             const isEditablePath = targetPath == editablePath;
+            const fileNames = fs.readdirSync(targetPath);
+
+            core.info(`getting files from ${targetPath}, files: ${fileNames}`);
             for (const pathName of fs.readdirSync(targetPath)) {
                 if (!pathName.endsWith(fileSuffix)) return;
                 
