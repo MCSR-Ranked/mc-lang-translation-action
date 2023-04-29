@@ -46,12 +46,12 @@ async function run() {
                     backupData = langData;
                 } else {
                     if (editableExist[finalizeName] == undefined) editableExist[finalizeName] = false;
-                    
-                    if (isEditable == isEditablePath) continue;
 
                     if (isEditable) {
-                        languageData[finalizeName] = langData;
-                        editableExist[finalizeName] = true;
+                        if (isEditablePath) {
+                            languageData[finalizeName] = langData;
+                            editableExist[finalizeName] = true;
+                        }
                     } else {
                         oldLangData[finalizeName] = langData;
                     }
