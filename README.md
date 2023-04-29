@@ -18,7 +18,7 @@ It doesn't checkout or push commits, so it does only proceeds to edit files in w
 
 ### Inputs
 ```yml
-- use: RedLime/mc-lang-translation-action@v1
+- use: RedLime/mc-lang-translation-action@v2
   with:
     # Required
     base-path: '/src/main/resources/assets/examplemod/lang'
@@ -65,7 +65,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: work
-        uses: RedLime/mc-lang-translation-action@v1
+        uses: RedLime/mc-lang-translation-action@v2
         with: 
           base-path: '/src/main/resources/assets/examplemod/lang'
           editable-suffix: '.TRANSLATE_ME'
