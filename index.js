@@ -20,7 +20,7 @@ async function run() {
         const defaultName = core.getInput('default-language');
 
         core.info(`found lang-file-path: ${langFilesPath}`);
-        core.info(`found editable-file-path: ${langFilesPath}`);
+        core.info(`found editable-file-path: ${editablePath}`);
 
         if (!fs.existsSync(langFilesPath)) fs.mkdirSync(langFilesPath, { recursive: true });
         if (!fs.existsSync(editablePath)) fs.mkdirSync(editablePath, { recursive: true });
