@@ -104,16 +104,17 @@ async function run() {
             }
 
             // update strings
-            for (const [key, value] of Object.entries(languageData[langName])) {
+            for (const [key] of Object.entries(defaultData)) {
                 const defaultValue = defaultData[key];
                 const oldValue = backupData[key];
+                const value = languageData[langName][key];  
 
                 if (defaultValue) {
                     // check same value
                     if (defaultValue == value) continue;
 
                     // check outdated original value
-                    if (!oldValue || defaultValue != oldValue) {
+                    if (oldValue && defaultValue != oldValue) {
                         languageData[langName][key] = defaultValue;
                         continue;
                     }
