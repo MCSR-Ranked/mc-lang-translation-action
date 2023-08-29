@@ -1,5 +1,6 @@
 {
     "test.hi": "hi!",
     "test.bye": "bye :(",
-    "test.error": "error!"
+    "test.error": "error!",
+    "test.success": "success"
 }
