@@ -113,7 +113,7 @@ async function run() {
                     if (defaultValue == value) continue;
 
                     // check outdated original value
-                    if (oldValue && defaultValue != oldValue) {
+                    if (!oldValue || defaultValue != oldValue) {
                         languageData[langName][key] = defaultValue;
                         continue;
                     }
