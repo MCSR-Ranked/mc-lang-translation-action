@@ -2,5 +2,6 @@
     "test.hi": "hi!",
     "test.bye": "bye :(",
     "test.error": "error!",
-    "test.success": "success"
+    "test.success": "success",
+    "test.success1": "succes2s"
 }
