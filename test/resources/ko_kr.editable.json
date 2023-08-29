@@ -1,5 +1,7 @@
 {
     "test.hi": "안녕하세요",
     "test.bye": "잘가세요 :(",
-    "test.error": "error!"
+    "test.error": "error!",
+    "test.success": "success",
+    "test.success1": "success2"
 }
